@@ -1,0 +1,24 @@
+<!-- chat/templates/chat/room.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chat Room</title>
+  </head>
+  <body>
+    <div
+      id="newsList"
+      style="display: flex; flex-direction: column-reverse"
+    ></div>
+    <script>
+      const evtSource = new EventSource("http://localhost:7999/events/");
+      evtSource.onmessage = function (event) {
+        const newElement = document.createElement("p");
+        const eventList = document.getElementById("newsList");
+        const data = JSON.parse(event.data);
+        newElement.innerHTML = `${data["date"]} - ${data["title"]}`;
+        eventList.appendChild(newElement);
+      };
+    </script>
+  </body>
+</html>

@@ -39,16 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party apps
-    'channels',
+    # 'channels',
+    'django_uwsgi',
+    'django_eventstream',
 
     # my apps
-    'chat'
+    'news'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django_grip.GripMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -129,3 +132,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ASGI_APPLICATION = "djangoproject.asgi.application"
+
+GRIP_URL = 'http://localhost:5561'
